@@ -1,0 +1,3 @@
+sacado de :
+https://www.kaggle.com/code/ppb00x/lunarlander-rl
+https://www.kaggle.com/code/dumanmesut/lunar-lander-deep-q-learning-2023

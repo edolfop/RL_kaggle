@@ -1,1 +1,148 @@
 Practicas que hago para aprender
+
+cosas interesantes:
+https://huggingface.co/learn/deep-rl-course/unit0/introduction
+
+que aprender:
+El Reinforcement Learning (RL) tiene varios enfoques y métodos dependiendo del problema y de los recursos disponibles. Aquí te dejo una visión general de los principales métodos:
+
+🔹 1. Métodos Basados en Valores (Value-Based)
+Estos métodos intentan aprender la función de valor 
+𝑉
+(
+𝑠
+)
+V(s) o la función de acción-valor 
+𝑄
+(
+𝑠
+,
+𝑎
+)
+Q(s,a), que indican qué tan bueno es estar en un estado o tomar una acción.
+
+📌 Q-Learning
+Algoritmo clásico basado en la ecuación de Bellman.
+Aprende una función 
+𝑄
+(
+𝑠
+,
+𝑎
+)
+Q(s,a) para estimar la recompensa esperada.
+Actualización:
+𝑄
+(
+𝑠
+,
+𝑎
+)
+=
+𝑄
+(
+𝑠
+,
+𝑎
+)
++
+𝛼
+(
+𝑟
++
+𝛾
+max
+⁡
+𝑄
+(
+𝑠
+′
+,
+𝑎
+′
+)
+−
+𝑄
+(
+𝑠
+,
+𝑎
+)
+)
+Q(s,a)=Q(s,a)+α(r+γmaxQ(s 
+′
+ ,a 
+′
+ )−Q(s,a))
+Se puede mejorar con Deep Q-Networks (DQN) para problemas complejos.
+📌 Deep Q-Networks (DQN)
+Usa redes neuronales en lugar de tablas 
+𝑄
+Q.
+Implementa experience replay y target networks para estabilidad.
+Ejemplo:
+python
+Copiar
+Editar
+from stable_baselines3 import DQN
+model = DQN("MlpPolicy", env, verbose=1)
+model.learn(total_timesteps=10000)
+🔹 2. Métodos Basados en Políticas (Policy-Based)
+Estos métodos aprenden directamente la política 
+𝜋
+(
+𝑎
+∣
+𝑠
+)
+π(a∣s), sin necesidad de una función de valor explícita.
+
+📌 REINFORCE (Monte Carlo Policy Gradient)
+Optimiza directamente la política con gradientes de la recompensa esperada.
+Actualiza la política en función de las recompensas obtenidas en un episodio.
+📌 Actor-Critic (A2C, A3C)
+Usa dos redes neuronales:
+Actor: Decide qué acción tomar.
+Critic: Estima el valor del estado para mejorar la política.
+Ejemplo con Stable Baselines:
+python
+Copiar
+Editar
+from stable_baselines3 import A2C
+model = A2C("MlpPolicy", env, verbose=1)
+model.learn(total_timesteps=10000)
+🔹 3. Métodos Basados en Modelos (Model-Based)
+Estos métodos crean un modelo del entorno para simular futuros estados y recompensas.
+
+📌 AlphaZero (Monte Carlo Tree Search + Deep Learning)
+Usa una combinación de Redes Neuronales y Árboles de Búsqueda Monte Carlo (MCTS).
+Aplicado con éxito en ajedrez y Go.
+📌 MuZero (Aprende el modelo del entorno)
+Similar a AlphaZero, pero sin conocer las reglas del entorno.
+Aprende una representación interna del entorno.
+🔹 4. Métodos Avanzados
+Algunos algoritmos combinan enfoques anteriores para mejorar el rendimiento.
+
+📌 Proximal Policy Optimization (PPO)
+Balancea exploración y explotación de manera eficiente.
+Utiliza un enfoque de actualización más estable que A2C/A3C.
+Muy popular en aplicaciones reales.
+📌 Trust Region Policy Optimization (TRPO)
+Similar a PPO, pero con restricciones más estrictas en la actualización de la política.
+📌 Soft Actor-Critic (SAC)
+Algoritmo eficiente para espacios de acción continuos.
+Usa una versión "soft" de la política óptima para una mejor exploración.
+📌 ¿Qué método elegir?
+Método	Ventaja	Uso Común
+Q-Learning	Fácil de implementar	Problemas discretos
+DQN	Aprende con redes neuronales	Juegos tipo Atari
+REINFORCE	Directo y simple	Políticas estocásticas
+A2C / A3C	Más eficiente que REINFORCE	Juegos, robótica
+PPO	Estable y popular	Control continuo, simulaciones
+SAC	Mejor exploración en espacios continuos	Robótica, control motor
+🚀 Herramientas para Implementar RL
+Gym (OpenAI): Simulaciones para RL.
+Stable Baselines3: Implementaciones listas de RL.
+Ray Rllib: RL escalable en clústeres.
+PyTorch / TensorFlow: Para modelos personalizados.
+¿Buscas algo más específico? 😃
