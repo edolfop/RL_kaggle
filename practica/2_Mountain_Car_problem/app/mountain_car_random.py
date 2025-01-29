@@ -64,7 +64,7 @@ output_directory = "C:/frames"
 os.makedirs(output_directory, exist_ok=True)
 
 frames = [] # store frames
-for i in range(500): # take 100 random actions
+for i in range(10000): # take 100 random actions
     
     # rendering the current frame using the environment's render method
     frame = env.render()
