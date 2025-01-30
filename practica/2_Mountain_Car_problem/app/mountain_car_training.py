@@ -43,6 +43,7 @@ def discretize_state(state, bins):
         state = state[0]
     discretized_state = tuple(np.digitize(s, bins[i]) - 1 for i, s in enumerate(state))
     return discretized_state
+
 def q_learning(env, num_episodes=500, alpha=0.07, gamma=0.99, epsilon=0.3):
 
 

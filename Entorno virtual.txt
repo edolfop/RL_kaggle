@@ -1,0 +1,22 @@
+# Ruta python 3.10 PC curro
+# C:\Users\a.perez\AppData\Local\Programs\Python\Python310\python.exe --version
+
+# Antes tienes que tener instalado el python que vas a utilizar (3.10 por ejemplo)
+# En terminal ejecutar
+python -m venv mi_entorno
+# piop 
+
+# Esto crea una carpeta llamada mi_entorno, donde estarán todas las librerías.
+
+# Activar el entorno (Windows)
+mi_entorno\Scripts\activate
+
+# Una vez activado, verás el nombre del entorno al inicio de la línea de comandos, algo como:
+# (mi_entorno) user@pc:~$
+
+
+# para desactivarlo
+deactivate
+
+# Para eliminar el entorno virtual
+rd /s /q mi_entorno  # En Windows (CMD)
