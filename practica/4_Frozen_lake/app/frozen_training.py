@@ -157,48 +157,6 @@ def q_training (env):
     np.save('q_table.npy', q_table)
     return q_table
 
-def play(env, q_table):
-
-    max_steps_per_episode = 30
-
-    for episode in range(5):
-        state, _ = env.reset()
-        done = False
-        print(f'Episode: {episode+1}'.center(50, '='))
-        time.sleep(1)
-        
-        for step in range(max_steps_per_episode):
-            # for clearning the board
-            clear_output(wait=True)
-            # allows you to check the agent's environment
-            env.render()
-            time.sleep(0.4)
-            
-            # invoke the action with the highest Q-value from the Q-Table for the current state
-            action = np.argmax(q_table[state, :])
-            
-            # take the action and move to the new state
-            new_state, reward, done, info = env.step(action)[:4]
-            
-            # acting condition
-            if done:
-                clear_output(wait=True)
-                env.render()
-                if reward == 1:
-                    print('You reach the goal!'.center(50, '*'))
-                    time.sleep(3)
-                else:
-                    print('You fall through a hole!'.center(50, '-'))
-                    time.sleep(3)
-                    clear_output(wait=True)
-                break
-
-            # select the new state based on the agent action
-            state = new_state
-
-    # close the environment
-    env.close()
-
 
 ##########CODE##################
 env_name = 'FrozenLake-v1'
@@ -210,11 +168,12 @@ env = gym.make(env_name , is_slippery=False, render_mode='human')
 # 2 RIGHT
 # 3 UP
 
-display_human(env)
+print(np.__version__)
+#display_human(env)
 
-Q_table = np.load('q_table.npy')
+Q_table = q_training(env)
 
-play(env, Q_table)
+print("Q: " , Q_table)
 
 #display_human(env)
 
